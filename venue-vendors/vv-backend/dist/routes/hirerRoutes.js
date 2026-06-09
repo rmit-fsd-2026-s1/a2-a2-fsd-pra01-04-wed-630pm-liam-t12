@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const hirerController_1 = require("../controllers/hirerController");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.get('/documents', auth_1.authenticate, (0, auth_1.requireRole)('hirer'), hirerController_1.getDocuments);
+router.post('/documents', auth_1.authenticate, (0, auth_1.requireRole)('hirer'), hirerController_1.uploadDocument);
+router.delete('/documents/:id', auth_1.authenticate, (0, auth_1.requireRole)('hirer'), hirerController_1.deleteDocument);
+router.get('/preferred', auth_1.authenticate, (0, auth_1.requireRole)('hirer'), hirerController_1.getPreferred);
+router.post('/preferred', auth_1.authenticate, (0, auth_1.requireRole)('hirer'), hirerController_1.addPreferred);
+router.delete('/preferred/:venueId', auth_1.authenticate, (0, auth_1.requireRole)('hirer'), hirerController_1.removePreferred);
+router.get('/stats', auth_1.authenticate, (0, auth_1.requireRole)('vendor'), hirerController_1.getVendorStats);
+exports.default = router;

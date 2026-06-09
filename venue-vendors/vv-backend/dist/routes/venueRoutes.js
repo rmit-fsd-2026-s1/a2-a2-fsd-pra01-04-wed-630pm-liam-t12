@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const venueController_1 = require("../controllers/venueController");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.get('/featured', venueController_1.getFeaturedVenues);
+router.get('/suitability', venueController_1.checkSuitability);
+router.get('/', auth_1.authenticate, venueController_1.getVenues);
+router.get('/:id', auth_1.authenticate, venueController_1.getVenueById);
+router.post('/', auth_1.authenticate, (0, auth_1.requireRole)('vendor'), venueController_1.createVenue);
+router.put('/:id', auth_1.authenticate, (0, auth_1.requireRole)('vendor', 'admin'), venueController_1.updateVenue);
+router.delete('/:id', auth_1.authenticate, (0, auth_1.requireRole)('vendor', 'admin'), venueController_1.deleteVenue);
+router.post('/:id/block', auth_1.authenticate, (0, auth_1.requireRole)('vendor'), venueController_1.blockPeriod);
+router.delete('/:id/block/:bpId', auth_1.authenticate, (0, auth_1.requireRole)('vendor'), venueController_1.unblockPeriod);
+exports.default = router;
