@@ -16,7 +16,7 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: [User, Venue, Booking],
   options: {
-    encrypt: true,
+    encrypt: false,
     trustServerCertificate: true,
   },
 });

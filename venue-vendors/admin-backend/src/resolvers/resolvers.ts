@@ -12,13 +12,9 @@ const bookingRepo = () => AppDataSource.getRepository(Booking);
 export const resolvers = {
   Query: {
     login: async (_: unknown, { email, password }: { email: string; password: string }) => {
-      // Admin login: hardcoded credentials as per spec
-      if (email !== 'admin' && email !== 'admin@vv.com') {
-        throw new Error('Invalid credentials');
-      }
       const isAdminPassword = password === 'admin';
-      const valid = isAdminPassword;
-      if (!valid) throw new Error('Invalid credentials');
+      const isAdminEmail = email === 'admin' || email === 'admin@vv.com';
+      if (!isAdminEmail || !isAdminPassword) throw new Error('Invalid credentials');
       const token = jwt.sign(
         { role: 'admin', email },
         process.env.JWT_SECRET || 'admin_secret',
