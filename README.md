@@ -203,10 +203,10 @@ mutation { setFeatured(id: 1, isFeatured: true) { id isFeatured } }
 ## Deployment (Render)
 | Service | URL |
 |---|---|
-| VV Frontend | TBD |
-| VV Backend | TBD |
-| Admin Frontend | TBD |
-| Admin Backend | TBD |
+| VV Frontend | https://vv-frontend-nvwv.onrender.com |
+| VV Backend | https://vv-backend-5wwk.onrender.com |
+| Admin Frontend | https://admin-frontend-hswj.onrender.com |
+| Admin Backend | https://admin-backend-wsaw.onrender.com |
 
 ---
 
